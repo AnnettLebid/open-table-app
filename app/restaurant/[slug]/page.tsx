@@ -2,26 +2,18 @@ import React from "react";
 import Link from "next/link";
 import NavBar from "../../components/NavBar";
 import Header from "./components/Header";
+import RestaurantNavBar from "./components/RestaurantNavBar"
 
 const RestaurantDetails = () => {
   return (
     <main className="bg-gray-100 min-h-screen w-screen">
       <main className="max-w-screen-2xl m-auto bg-white">
-        <NavBar />     
-        <Header />        
+        <NavBar />
+        <Header />
         {/* DESCRIPTION PORTION */}
         <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
-          <div className="bg-white w-[70%] rounded p-3 shadow">
-            {/* RESTAURANT NAV BAR */}
-            <nav className="flex text-reg border-b pb-2">
-              <Link href="/restaurant/111" className="mr-7">
-                Overview
-              </Link>
-              <Link href="/restaurant/111/menu" className="mr-7">
-                Menu
-              </Link>
-            </nav>
-            {/* RESTAURANT NAV BAR */}
+          <div className="bg-white w-[70%] rounded p-3 shadow">          
+            <RestaurantNavBar />          
             {/* TITLE */}
             <div className="mt-4 border-b pb-6">
               <h1 className="font-bold text-6xl">Milestones Grill</h1>
