@@ -1,24 +1,12 @@
 import React from "react";
+import Link from "next/link";
+import NavBar from "../../../components/NavBar";
 
 const Menu = () => {
   return (
     <main className="bg-gray-100 min-h-screen w-screen">
       <main className="max-w-screen-2xl m-auto bg-white">
-        {/* NAVBAR */}
-        <nav className="bg-white p-2 flex justify-between">
-          <a href="" className="font-bold text-gray-700 text-2xl">
-            {" "}
-            Open Table{" "}
-          </a>
-          <div>
-            <div className="flex">
-              <button className="bg-blue-600 text-white border p-1 px-4 rounded mr-2">
-                Sign In
-              </button>
-              <button className="border p-1 px-4 rounded">Sign Out</button>
-            </div>
-          </div>
-        </nav>
+        <NavBar />
         {/* HEADER */}
         <div className="h-96 overflow-hidden">
           <div className="bg-center bg-gradient-to-r from-[#0f1f47] to-[#5f6984] h-full flex justify-center items-center">
@@ -32,14 +20,12 @@ const Menu = () => {
           <div className="bg-white w-[70%] rounded p-3 shadow">
             {/* RESTAURANT NAV BAR */}
             <nav className="flex text-reg border-b pb-2">
-              <a href="" className="mr-7">
-                {" "}
-                Overview{" "}
-              </a>
-              <a href="" className="mr-7">
-                {" "}
-                Menu{" "}
-              </a>
+              <Link href="/restaurant/111" className="mr-7">
+                Overview
+              </Link>
+              <Link href="/restaurant/111/menu" className="mr-7">
+                Menu
+              </Link>
             </nav>
             {/* RESTAURANT NAV BAR */} {/* MENU */}
             <main className="bg-white mt-5">
