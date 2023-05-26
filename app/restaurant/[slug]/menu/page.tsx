@@ -1,49 +1,18 @@
-import React from "react";
-import Link from "next/link";
 import NavBar from "../../../components/NavBar";
+import Header from "../components/Header";
+import RestaurantNavBar from "../components/RestaurantNavBar";
+import RestaurantMenu from "../components/Menu";
 
 const Menu = () => {
   return (
     <main className="bg-gray-100 min-h-screen w-screen">
       <main className="max-w-screen-2xl m-auto bg-white">
         <NavBar />
-        {/* HEADER */}
-        <div className="h-96 overflow-hidden">
-          <div className="bg-center bg-gradient-to-r from-[#0f1f47] to-[#5f6984] h-full flex justify-center items-center">
-            <h1 className="text-7xl text-white capitalize text-shadow text-center">
-              Milestones Grill (Toronto)
-            </h1>
-          </div>
-        </div>
-        {/* HEADER */} {/* DESCRIPTION PORTION */}
+        <Header />
         <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
           <div className="bg-white w-[70%] rounded p-3 shadow">
-            {/* RESTAURANT NAV BAR */}
-            <nav className="flex text-reg border-b pb-2">
-              <Link href="/restaurant/111" className="mr-7">
-                Overview
-              </Link>
-              <Link href="/restaurant/111/menu" className="mr-7">
-                Menu
-              </Link>
-            </nav>
-            {/* RESTAURANT NAV BAR */} {/* MENU */}
-            <main className="bg-white mt-5">
-              <div>
-                <div className="mt-4 pb-1 mb-1">
-                  <h1 className="font-bold text-4xl">Menu</h1>
-                </div>
-                <div className="flex flex-wrap justify-between">
-                  {/* MENU CARD */}
-                  <div className="border rounded p-3 w-[49%] mb-3">
-                    <h3 className="font-bold text-lg">Surf And Turf</h3>
-                    <p>A well done steak with lobster and rice</p>
-                    <p className="mt-7">$80.00</p>
-                  </div>
-                  {/* MENU CARD */}
-                </div>
-              </div>
-            </main>
+            <RestaurantNavBar />
+            <RestaurantMenu />
           </div>
         </div>
       </main>
