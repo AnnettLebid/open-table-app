@@ -1,4 +1,4 @@
-import React from 'react'
+"use client";
 
 const ReservationCard = () => {
   return (
@@ -17,10 +17,7 @@ const ReservationCard = () => {
         <div className="flex justify-between">
           <div className="flex flex-col w-[48%]">
             <label htmlFor="">Date</label>
-            <input
-              type="text"
-              className="py-3 border-b font-light w-28"
-            />
+            <input type="text" className="py-3 border-b font-light w-28" />
           </div>
           <div className="flex flex-col w-[48%]">
             <label htmlFor="">Time</label>
@@ -37,7 +34,7 @@ const ReservationCard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReservationCard
+export default ReservationCard;

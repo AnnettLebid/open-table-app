@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Rating = () => {
   return (
     <div className="flex items-end">
@@ -11,7 +9,7 @@ const Rating = () => {
         <p className="text-reg ml-4">600 Reviews</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Rating
+export default Rating;

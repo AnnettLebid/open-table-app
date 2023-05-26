@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 const SearchBar = () => {
   const router = useRouter();
   const [location, setLocation] = useState("");
+
   return (
     <>
       <input
