@@ -12,7 +12,7 @@ import ReservationCard from "./components/ReservationCard";
 const RestaurantDetails = () => {
   return (
     <>
-      <div className="bg-white w-[70%] rounded p-3 shadow">
+      <div className="bg-white w-[70%] rounded p-3 shadow mb-4">
         <RestaurantNavBar />
         <Title />
         <Rating />
