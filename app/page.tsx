@@ -1,21 +1,22 @@
-
-import { Inter } from "@next/font/google";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 
-const inter = Inter({ subsets: ["latin"] });
+const prisma = new PrismaClient();
+const fetchRestaurants = async () => {
+  const restaurants = await prisma.restaurant.findMany();
+  return restaurants;
+};
 
-export default function Home() {
+export default async function Home() {
+  const restaurants = await fetchRestaurants();
 
   return (
     <>
       <Header />
-        <div className="flex flex-wrap py-3 px-36 mt-10">
+      <div className="flex flex-wrap py-3 px-36 mt-10">
         <RestaurantCard />
-        </div>
+      </div>
     </>
-
   );
 }
