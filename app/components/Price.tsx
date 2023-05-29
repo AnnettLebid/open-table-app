@@ -11,12 +11,14 @@ const Price = ({ price }: { price: PRICE }) => {
         </>
       );
     } else if (price === PRICE.REGULAR) {
-      <>
-        <span>$$$</span>
-        <span className="text-gray-400">$</span>
-      </>;
+      return (
+         <>
+          <span>$$$</span>
+          <span className="text-gray-400">$</span>
+        </>
+      )     
     } else {
-      <span>$$$$</span>;
+      return (<span>$$$$</span>)
     }
   };
   return <p className="mr-3 flex">{renderPrice()}</p>;
