@@ -7,10 +7,10 @@ interface RestaurantCardProps {
 }
 
 const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
-  const { id, name, main_image, cuisine, location, price } = restaurant;
+  const { name, main_image, cuisine, location, price } = restaurant;
   return (
     <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
-      <Link href="restaurant/111">
+      <Link href={`restaurant/${restaurant.slug}`}>
         <img src={main_image} className="w-full h-36" />
         <div className="p-1">
           <h3 className="font-bold text-2xl mb-2">{name}</h3>
