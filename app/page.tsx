@@ -5,6 +5,7 @@ import RestaurantCard from "./components/RestaurantCard";
 export interface RestaurantCardType {
   id: number;
   name: string;
+  slug: string;
   main_image: string;
   cuisine: Cuisine;
   location: Location;
@@ -17,6 +18,7 @@ const fetchRestaurants = async (): Promise<RestaurantCardType[]> => {
     select: {
       id: true,
       name: true,
+      slug: true,
       main_image: true,
       cuisine: true,
       location: true,
@@ -34,7 +36,7 @@ export default async function Home() {
       <Header />
       <div className="flex flex-wrap py-3 px-36 mt-10">
         {restaurants.map((restaurant) => (
-          <RestaurantCard restaurant={restaurant} />
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
     </>
