@@ -23,6 +23,7 @@ const SearchBar = () => {
             return;
           }
           router.push(`/search?city=${location}`);
+          setLocation("");
         }}
       >
         Let's Go
