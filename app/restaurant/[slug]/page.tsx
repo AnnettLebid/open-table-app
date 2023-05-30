@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import Link from "next/link";
-import Header from "./components/Header";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 import Title from "./components/Title";
 import Rating from "./components/Rating";
