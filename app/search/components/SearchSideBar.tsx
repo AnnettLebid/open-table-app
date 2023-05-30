@@ -8,20 +8,20 @@ const priceButtons = [
     id: 1,
     class: "border w-full text-reg font-light rounded-l p-2",
     text: "$",
-    value: "CHEAP",
+    price: PRICE.CHEAP,
   },
   {
     id: 2,
     class: "border-r border-t border-b w-full text-reg font-light p-2",
     text: "$$",
-    value: "REGULAR",
+    price: PRICE.REGULAR,
   },
   {
     id: 3,
     class:
       "border-r border-t border-b w-full text-reg font-light rounded-r p-2",
     text: "$$$",
-    value: "EXPENSIVE",
+    price: PRICE.EXPENSIVE,
   },
 ];
 
@@ -78,13 +78,23 @@ const SearchSideBar = ({
         </>
       </div>
       <div className="mt-3 pb-4">
-        <h1 className="mb-2 ">Price</h1>
+        <h1 className="mb-2">Price</h1>
         <div className="flex">
           <>
             {priceButtons.map((btn) => (
-              <button className={btn.class} key={btn.id} onClick={() => {}}>
+              <Link
+                href={{
+                  pathname: "/search",
+                  query: {
+                    ...searchParams,
+                    price: btn.price,
+                  },
+                }}
+                className={btn.class}
+                key={btn.id}
+              >
                 {btn.text}
-              </button>
+              </Link>
             ))}
           </>
         </div>
