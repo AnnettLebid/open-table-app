@@ -7,7 +7,7 @@ interface RestaurantCardProps {
 }
 
 const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
-  const { name, main_image, cuisine, location, price } = restaurant;
+  const { name, main_image, cuisine, location, price, reviews } = restaurant;
   return (
     <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
       <Link href={`restaurant/${restaurant.slug}`}>
@@ -17,7 +17,7 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
           <div className="flex items-start">
             <div className="flex items-start">
               <div className="flex mb-2">*****</div>
-              <p className="ml-2">77 reviews</p>
+              <p className="ml-2">{reviews.length} review{reviews.length === 1 ? "" : "s"}</p>
             </div>
           </div>
           <div className="flex text-reg font-light capitalize">
