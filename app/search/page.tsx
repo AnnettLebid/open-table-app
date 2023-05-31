@@ -1,4 +1,4 @@
-import { PrismaClient, PRICE } from "@prisma/client";
+import { PrismaClient, PRICE, Review } from "@prisma/client";
 import Header from "./components/Header";
 import SearchSideBar from "./components/SearchSideBar";
 import RestaurantCard from "./components/RestaurantCard";
@@ -44,6 +44,7 @@ const fetchRestaurantsBySearchParams = async (searchParams: SearchParams) => {
     location: true,
     price: true,
     slug: true,
+    reviews: true,
   };
 
   const restaurants = await prisma.restaurant.findMany({
