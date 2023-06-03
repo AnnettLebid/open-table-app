@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import AuthModal from "./AuthModal";
 
 const NavBar = () => {
+  const [isSignIn, setIsSignIn] = useState<boolean>(false);
   return (
     <nav className="bg-white p-2 flex justify-between">
       <Link href="/" className="font-bold text-gray-700 text-2xl">
@@ -9,10 +13,8 @@ const NavBar = () => {
       </Link>
       <div>
         <div className="flex">
-          <button className="bg-blue-600 text-white border p-1 px-4 rounded mr-2">
-            Sign In
-          </button>
-          <button className="border p-1 px-4 rounded">Sign Out</button>
+          <AuthModal isSignIn={isSignIn} />
+          <AuthModal isSignIn={true} />
         </div>
       </div>
     </nav>
