@@ -17,4 +17,4 @@ const Error = ({ error }: { error: Error }) => {
   );
 };
 
-export default Notfound;
+export default Error;
