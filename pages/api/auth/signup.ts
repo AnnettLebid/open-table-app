@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import * as jose from "jose";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -67,6 +68,26 @@ export default async function handler(
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    res.status(200).json({ hello: hashedPassword });
+    const user = await prisma.user.create({
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        password: hashedPassword,
+        email,
+        city,
+        phone,
+      },
+    });
+
+    const alg = "HS256";
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+
+    const token = await new jose.SignJWT({ email: user.email })
+      .setProtectedHeader({ alg })
+      .setExpirationTime("24h")
+      .sign(secret);
+
+    return res.status(200).json({ token });
   }
+  return res.status(404).json("Unknown endpoint");
 }
