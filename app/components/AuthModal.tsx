@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Box, Modal } from "@mui/material";
+import { useState, useEffect, useContext } from "react";
+import { Box, Modal, CircularProgress, Alert } from "@mui/material";
 import AuthModalInputs from "./AuthModalInputs";
+import { AuthContext } from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const style = {
   position: "absolute" as "absolute",
@@ -16,6 +18,7 @@ const style = {
 };
 
 export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
+  const { data, loading, error } = AuthContext();
   const [open, setOpen] = useState<boolean>(false);
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -26,16 +29,33 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
     password: "",
   });
   const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
+  const { signin } = useAuth();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const renderContent = (signInContent: string, signUpContent: string) => {
-    return isSignIn ? signInContent : signUpContent;
+  const renderContent = (
+    signInContent: string,
+    signUpContent: string,
+    loading?: boolean
+  ) => {
+    return loading ? (
+      <CircularProgress size={13} color="inherit" />
+    ) : isSignIn ? (
+      signInContent
+    ) : (
+      signUpContent
+    );
   };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleClick = () => {
+    if (isSignIn) {
+      signin({ email: inputs.email, password: inputs.password });
+    }
   };
 
   useEffect(() => {
@@ -88,13 +108,18 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
               handleChangeInput={handleChangeInput}
               isSignIn={isSignIn}
             />
+            {error && (
+              <Alert severity="error" className="mb-2">
+                {error}
+              </Alert>
+            )}
             <button
               disabled={btnDisabled}
+              onClick={handleClick}
               className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mt-4 disabled:bg-gray-400"
             >
-              {renderContent("Sign In", "Create Account")}
+              {renderContent("Sign In", "Create Account", loading)}
             </button>
-            {btnDisabled}
           </div>
         </Box>
       </Modal>
