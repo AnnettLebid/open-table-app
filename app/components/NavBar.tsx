@@ -2,20 +2,32 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AuthContext } from "../../context/AuthContext";
 import AuthModal from "./AuthModal";
 
 const NavBar = () => {
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
+  const { data, loading } = AuthContext();
   return (
     <nav className="bg-white p-2 flex justify-between">
       <Link href="/" className="font-bold text-gray-700 text-2xl">
         Open Table
       </Link>
       <div>
-        <div className="flex">
-          <AuthModal isSignIn={isSignIn} />
-          <AuthModal isSignIn={true} />
-        </div>
+        {loading ? null : (
+          <div className="flex">
+            {data ? (
+              <button className="bg-white-500 text-gray-700 border p-1 px-4 rounded mr-3">
+                Logout
+              </button>
+            ) : (
+              <>
+                <AuthModal isSignIn={isSignIn} />
+                <AuthModal isSignIn={true} />
+              </>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
