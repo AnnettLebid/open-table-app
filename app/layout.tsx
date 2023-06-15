@@ -1,6 +1,7 @@
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import AuthenticationContext from "../context/AuthContext";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function RootLayout({
   children,
