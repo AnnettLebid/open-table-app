@@ -2,7 +2,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
 const useAuth = () => {
-  const { data, error, loading, setAuthState } = AuthContext();
+  const { setAuthState } = AuthContext();
   const signin = async (
     {
       email,
