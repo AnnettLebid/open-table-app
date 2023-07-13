@@ -22,7 +22,7 @@ const NavBar = () => {
             {data ? (
               <button
                 onClick={signout}
-                className="bg-white-500 text-gray-700 border p-1 px-4 rounded mr-3"
+                className="bg-cyan-500 hover:bg-cyan-600 text-white border p-1 px-4 rounded mr-3"
               >
                 SignOut
               </button>
