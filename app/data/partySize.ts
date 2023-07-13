@@ -6,7 +6,7 @@ export const partySize = [
   { value: 5, label: "5 people" },
   { value: 6, label: "6 people" },
   { value: 7, label: "7 people" },
-  { value: 8, label: "7 people" },
-  { value: 9, label: "7 people" },
-  { value: 10, label: "7 people" },
+  { value: 8, label: "8 people" },
+  { value: 9, label: "9 people" },
+  { value: 10, label: "10 people" },
 ];
