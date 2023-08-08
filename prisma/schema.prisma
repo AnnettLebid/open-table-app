@@ -39,7 +39,7 @@ model Item {
   description   String
   price         String 
   restaurant_id Int
-  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt 
 }
