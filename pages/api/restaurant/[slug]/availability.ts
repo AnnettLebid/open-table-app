@@ -70,6 +70,16 @@ export default async function handler(
     };
   });
 
+  searchTimesWithTables.forEach((searchTime) => {
+    searchTime.tables = searchTime.tables.filter((table) => {
+      if (bookingTableObj[searchTime.date.toISOString()]) {
+        if (bookingTableObj[searchTime.date.toISOString()][table.id])
+          return false;
+      }
+      return true;
+    });
+  });
+
   return res.json({
     searchTimes,
     bookings,
