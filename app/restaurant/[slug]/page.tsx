@@ -47,7 +47,7 @@ const fetchReviews = (slug: string) => {};
 
 const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
   const restaurant = await fetchRestaurantBySlug(params.slug);
-
+  
   return (
     <>
       <div className="bg-white w-[70%] rounded p-3 shadow mb-4">
@@ -61,6 +61,7 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
       <ReservationCard
         openTime={restaurant.open_time}
         closeTime={restaurant.close_time}
+        slug={restaurant.slug}
       />
     </>
   );
