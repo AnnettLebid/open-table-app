@@ -1,4 +1,10 @@
-import { PrismaClient, Review } from "@prisma/client";
+import { notFound } from "next/navigation";
+import { Cuisine, PrismaClient, Review, Location } from "@prisma/client";
+import {
+  VillaOutlined,
+  RestaurantOutlined,
+  WatchLaterOutlined,
+} from "@mui/icons-material";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 import Title from "./components/Title";
 import Rating from "./components/Rating";
@@ -6,7 +12,12 @@ import Description from "./components/Description";
 import Images from "./components/Images";
 import Reviews from "./components/Reviews";
 import ReservationCard from "./components/ReservationCard";
-import { notFound } from "next/navigation";
+import {
+  convertToDisplayTime,
+  Time,
+} from "../../../utils/convertToDisplayTime";
+
+import { capitalizeFirstLetter } from "../../../utils/helpers";
 
 interface Restaurant {
   id: number;
@@ -17,6 +28,8 @@ interface Restaurant {
   close_time: string;
   slug: string;
   reviews: Review[];
+  location: Location;
+  cuisine: Cuisine;
 }
 
 const prisma = new PrismaClient();
@@ -35,6 +48,8 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
       reviews: true,
       open_time: true,
       close_time: true,
+      cuisine: true,
+      location: true,
     },
   });
   if (!restaurant) {
@@ -43,11 +58,10 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   return restaurant;
 };
 
-const fetchReviews = (slug: string) => {};
-
 const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
   const restaurant = await fetchRestaurantBySlug(params.slug);
-  
+  const { location, cuisine, open_time, close_time } = restaurant;
+
   return (
     <>
       <div className="bg-white w-[70%] rounded p-3 shadow mb-4">
@@ -58,11 +72,40 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
         <Images images={restaurant.images} />
         <Reviews reviews={restaurant.reviews} />
       </div>
-      <ReservationCard
-        openTime={restaurant.open_time}
-        closeTime={restaurant.close_time}
-        slug={restaurant.slug}
-      />
+      <div className="w-[27%] border-3-red">
+        <ReservationCard
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+          slug={restaurant.slug}
+        />
+        <div className="mt-3">
+          <h4 className="font-bold">Additional information</h4>
+          <div className="flex mt-2">
+            <VillaOutlined />
+            <div className="ml-1">
+              <h5 className="font-bold">Neighborhood</h5>
+              <h5>{capitalizeFirstLetter(location.name)}</h5>
+            </div>
+          </div>
+          <div className="flex mt-2">
+            <WatchLaterOutlined />
+            <div className="ml-1">
+              <h5 className="font-bold">Hours of operation</h5>
+              <h5>
+                {convertToDisplayTime(open_time as Time)} -
+                {convertToDisplayTime(close_time as Time)}
+              </h5>
+            </div>
+          </div>
+          <div className="flex mt-2">
+            <RestaurantOutlined />
+            <div className="ml-1">
+              <h5 className="font-bold">Cuisines</h5>
+              <h5>{capitalizeFirstLetter(cuisine.name)}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
