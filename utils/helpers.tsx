@@ -8,3 +8,8 @@ export const calculateReviewRatingAverage = (reviews: Review[]) => {
     }, 0) / reviews.length
   );
 };
+
+export const capitalizeFirstLetter = (str: string) => {
+  const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+  return capitalized;
+};
