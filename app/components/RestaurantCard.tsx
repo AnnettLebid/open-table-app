@@ -14,7 +14,9 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
       <Link href={`restaurant/${restaurant.slug}`}>
         <img src={main_image} className="w-full h-36" />
         <div className="p-1">
-          <h3 className="font-bold text-2xl mb-2">{name}</h3>
+          <h3 className="font-bold text-2xl mb-2 text-teal hover:text-red">
+            {name}
+          </h3>
           <div className="flex items-start">
             <div className="flex items-start">
               <div className="flex mb-2">
