@@ -11,7 +11,7 @@ const RestaurantLayout = ({
   return (
     <main>
       <Header title={params.slug} />
-      <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
+      <div className="flex m-auto w-5/6 md:w-2/3 relative justify-between items-start 0 -mt-11">
         {children}
       </div>
     </main>

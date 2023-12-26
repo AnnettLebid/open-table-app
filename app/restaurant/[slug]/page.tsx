@@ -63,8 +63,8 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
   const { location, cuisine, open_time, close_time } = restaurant;
 
   return (
-    <>
-      <div className="bg-white w-[70%] rounded p-3 shadow mb-4">
+    <div className="flex flex-col-reverse md:flex-row">
+      <div className="bg-white w-full md:w-[70%] rounded p-3 shadow mb-4 border-3-red">
         <RestaurantNavBar slug={restaurant.slug} />
         <Title title={restaurant.name} />
         <Rating reviews={restaurant.reviews} />
@@ -72,15 +72,15 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
         <Images images={restaurant.images} />
         <Reviews reviews={restaurant.reviews} />
       </div>
-      <div className="w-[27%] border-3-red">
+      <div className="w-full mb-4 md:w-[27%] sticky top-0">
         <ReservationCard
           openTime={restaurant.open_time}
           closeTime={restaurant.close_time}
           slug={restaurant.slug}
         />
-        <div className="mt-3">
+        {/* <div className="mt-3">
           <h4 className="font-bold">Additional information</h4>
-          <div className="flex mt-2">
+          <div className="flex mt-3">
             <VillaOutlined />
             <div className="ml-1">
               <h5 className="font-bold">Neighborhood</h5>
@@ -104,9 +104,9 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
               <h5>{capitalizeFirstLetter(cuisine.name)}</h5>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-    </>
+    </div>
   );
 };
 
