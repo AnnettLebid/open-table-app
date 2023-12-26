@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Cuisine, PrismaClient, Review, Location } from "@prisma/client";
+import { Cuisine, Review, Location } from "@prisma/client";
 import {
   VillaOutlined,
   RestaurantOutlined,
@@ -18,6 +18,7 @@ import {
 } from "../../../utils/convertToDisplayTime";
 
 import { capitalizeFirstLetter } from "../../../utils/helpers";
+import DBClient from "../../DB";
 
 interface Restaurant {
   id: number;
@@ -32,7 +33,7 @@ interface Restaurant {
   cuisine: Cuisine;
 }
 
-const prisma = new PrismaClient();
+const prisma = DBClient.getInstance().prisma;
 
 const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   const restaurant = await prisma.restaurant.findUnique({

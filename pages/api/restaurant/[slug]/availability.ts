@@ -1,8 +1,9 @@
-import { PrismaClient, Table } from "@prisma/client";
+import { Table } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { findAvailableTables } from "../../../../services/restaurant/findAvailableTables";
+import DBClient from "../../../../app/DB";
 
-const prisma = new PrismaClient();
+const prisma = DBClient.getInstance().prisma;
 
 export default async function handler(
   req: NextApiRequest,

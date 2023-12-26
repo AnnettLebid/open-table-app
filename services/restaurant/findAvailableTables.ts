@@ -1,8 +1,9 @@
-import { PrismaClient, Table } from "@prisma/client";
+import { Table } from "@prisma/client";
 import { NextApiResponse } from "next";
 import { times } from "../../app/data";
+import DBClient from "../../app/DB";
 
-const prisma = new PrismaClient();
+const prisma = DBClient.getInstance().prisma;
 
 interface TimeDataInterface {
   displayTime: string;

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import DBClient from "../../../app/DB";
 
-const prisma = new PrismaClient();
+const prisma = DBClient.getInstance().prisma;
 
 export default async function handler(
   req: NextApiRequest,
@@ -31,14 +31,12 @@ export default async function handler(
     return res.status(404).json({ errorMessage: "User not found" });
   }
 
-  return res
-    .status(200)
-    .json({
-      id: user.id,
-      firstName: user.first_name,
-      lastName: user.last_name,
-      email: user.email,
-      phone: user.phone,
-      city: user.city,
-    });
+  return res.status(200).json({
+    id: user.id,
+    firstName: user.first_name,
+    lastName: user.last_name,
+    email: user.email,
+    phone: user.phone,
+    city: user.city,
+  });
 }

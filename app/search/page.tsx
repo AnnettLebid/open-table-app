@@ -1,7 +1,8 @@
-import { PrismaClient, PRICE, Review } from "@prisma/client";
+import { PRICE, Review } from "@prisma/client";
 import Header from "./components/Header";
 import SearchSideBar from "./components/SearchSideBar";
 import RestaurantCard from "./components/RestaurantCard";
+import DBClient from "../DB";
 
 interface SearchParams {
   city?: string;
@@ -9,7 +10,7 @@ interface SearchParams {
   price?: PRICE;
 }
 
-const prisma = new PrismaClient();
+const prisma = DBClient.getInstance().prisma;
 const fetchRestaurantsBySearchParams = async (searchParams: SearchParams) => {
   const whereParams: any = {};
   if (searchParams.city) {
