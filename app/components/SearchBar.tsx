@@ -11,13 +11,13 @@ const SearchBar = () => {
     <>
       <input
         type="text"
-        className="rounded text-lg mr-3 p-2 w-[450px]"
+        className="rounded text-lg mr-3 p-2 w-3/5 md:w-3/5"
         placeholder="State, city or town"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
       <button
-        className="bg-red-600 px-9 py-2 text-white rounded"
+        className="bg-red-600 p-4 md:px-9 py-2 text-white rounded"
         onClick={() => {
           if (location === "") {
             return;
